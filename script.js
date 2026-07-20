@@ -1,5 +1,3 @@
-
-
 const track = document.getElementById('promoTrack');
 const nextBtn = document.getElementById('promoNext');
 const prevBtn = document.getElementById('promoPrev');
@@ -15,7 +13,7 @@ track.insertBefore(lastClone, cards[0]);
 cards = Array.from(track.children);
 let index = 1; // Starting from the 1st real card 
 
-let isAnimating = false; // click lock - রাপিড ক্লিকে যাতে index এলোমেলো না হয়
+let isAnimating = false; 
 
 function getStep(){
     const cardWidth = cards[0].getBoundingClientRect().width;
@@ -31,7 +29,7 @@ function moveTo(i, animate = true){
 moveTo(index, false);
 
 function goNext(){
-    if(isAnimating) return; // transition চলাকালীন নতুন click ignore হবে
+    if(isAnimating) return; 
     isAnimating = true;
     index++;
     moveTo(index);
@@ -47,7 +45,7 @@ function goPrev(){
 nextBtn.addEventListener('click', goNext);
 prevBtn.addEventListener('click', goPrev);
 
-// প্রতিটা transition শেষ হলে lock খুলে দেওয়া হয় + প্রয়োজনে সাইলেন্টলি loop করানো হয়
+
 track.addEventListener('transitionend', () => {
 
     if(index === cards.length - 1){
@@ -60,7 +58,7 @@ track.addEventListener('transitionend', () => {
         moveTo(index, false);
     }
 
-    isAnimating = false; // এখন আবার click করা যাবে
+    isAnimating = false; 
 });
 
 window.addEventListener('resize', () => moveTo(index, false));
